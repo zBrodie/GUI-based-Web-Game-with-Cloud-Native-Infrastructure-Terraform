@@ -8,7 +8,7 @@ resource "aws_s3_bucket" "bucket" {
 }
 
 resource "aws_s3_bucket_cors_configuration" "website_cors" {
-  bucket = "www.${var.bucket_name}"
+  bucket = aws_s3_bucket.www_bucket.id
   cors_rule {
     allowed_headers = ["Authorization", "Content-Length"]
     allowed_methods = ["GET", "POST"]
@@ -18,7 +18,7 @@ resource "aws_s3_bucket_cors_configuration" "website_cors" {
 }
 
 resource "aws_s3_bucket_website_configuration" "website_config" {
-  bucket = "www.${var.bucket_name}"
+  bucket = aws_s3_bucket.www_bucket.id
   index_document {
     suffix = var.index_page
   }
@@ -36,21 +36,21 @@ resource "aws_s3_bucket_website_configuration" "redirect_config" {
 }
 
 resource "aws_s3_bucket_acl" "website_acl" {
-  bucket = "www.${var.bucket_name}"
+  bucket = aws_s3_bucket.www_bucket.id
   acl = "public-read"
 }
 
 resource "aws_s3_bucket_acl" "redirect_acl" {
-  bucket = var.bucket_name
+  bucket = aws_s3_bucket.bucket.id
   acl = "public-read"
 }
 
 resource "aws_s3_bucket_policy" "website_policy" {
-  bucket = "www.${var.bucket_name}"
+  bucket = aws_s3_bucket.www_bucket.id
   policy = templatefile("templates/s3-policy.json", { bucket = "www.${var.bucket_name}" })
 }
 
 resource "aws_s3_bucket_policy" "redirect_policy" {
-  bucket = var.bucket_name
+  bucket = aws_s3_bucket.bucket.id
   policy = templatefile("templates/s3-policy.json", { bucket = var.bucket_name })
 }
