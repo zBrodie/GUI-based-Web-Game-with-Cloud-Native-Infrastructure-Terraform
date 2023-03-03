@@ -8,12 +8,12 @@ terraform {
 }
 
 provider "aws" {
-  profile = "default"
+  profile = "capstone"
   region = var.region
 }
 
 provider "aws" {
   alias = "acm_provider"
-  profile = "default"
+  profile = "capstone"
   region = "us-east-1"
 }

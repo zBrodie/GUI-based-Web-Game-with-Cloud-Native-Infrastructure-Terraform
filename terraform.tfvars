@@ -1,4 +1,5 @@
 domain_name = "upwardmobility.online"
+cognito_domain_name = "auth.upwardmobility.online"
 bucket_name = "upwardmobilitywebsite"
 error_page = "404.html"
 index_page = "index.html"

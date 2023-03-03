@@ -3,6 +3,11 @@ variable "domain_name" {
   description = "Website domain name."
 }
 
+variable "cognito_domain_name" {
+  type = string
+  description = "Cognito subdomain name."
+}
+
 variable "bucket_name" {
   type = string
   description = "The name of the S3 bucket"
