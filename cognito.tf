@@ -1,6 +1,6 @@
 resource "aws_cognito_user_pool" "user_pool" {
   name = "user-pool"
-  username_attributes      = ["email"]
+  alias_attributes = ["preferred_username"]
   auto_verified_attributes = ["email"]
 
   username_configuration {
@@ -12,9 +12,9 @@ resource "aws_cognito_user_pool" "user_pool" {
   }
 
   verification_message_template {
-    default_email_option = "CONFIRM_WITH_CODE"
-    email_subject = "Account Confirmation"
-    email_message = "Your Upward Mobility confirmation code is {####}"
+    default_email_option = "CONFIRM_WITH_LINK"
+    email_subject_by_link = "Upward Mobility Account Confirmation"
+    email_message_by_link = "To confirm your Upward Mobility account, navigate to {##Click Here##}"
   }
 
   schema {
