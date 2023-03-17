@@ -46,14 +46,10 @@ resource "aws_cognito_user_pool_client" "client" {
 
 }
 
-resource "aws_route53_zone" "cognito_route53_zone" {
-  name = var.cognito_domain_name
-}
-
 resource "aws_route53_record" "auth-cognito-A" {
   name    = aws_cognito_user_pool_domain.cognito-domain.domain
   type    = "A"
-  zone_id = aws_route53_zone.cognito_route53_zone.zone_id
+  zone_id = aws_route53_zone.route53_zone.zone_id
   alias {
     evaluate_target_health = false
     name                   = aws_cognito_user_pool_domain.cognito-domain.cloudfront_distribution_arn
