@@ -10,7 +10,12 @@ variable "cognito_domain_name" {
 
 variable "bucket_name" {
   type = string
-  description = "The name of the S3 bucket"
+  description = "The name of the S3 bucket that holds the website files"
+}
+
+variable "game_bucket" {
+  type = string
+  description = "The name of the S3 bucket that holds the game files"
 }
 
 variable "error_page" {
